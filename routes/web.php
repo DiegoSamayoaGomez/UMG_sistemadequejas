@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\quejasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::post("/registrar-queja", [quejasController::class, "create"])->name("quejas.create");
+Route::post("/modificar-queja", [quejasController::class, "update"])->name("quejas.update");
