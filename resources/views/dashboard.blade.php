@@ -22,8 +22,15 @@
             margin-right: 10px;
             /* Espacio entre las tablas */
         }
+        .sticky-col {
+            position: sticky !important;
+            z-index: 1000;
+            top: 0;
+            align-self: flex-start;
+            left: 0;
+        }
     </style>
-    <div class="table-container">
+<div class="table-container">
         <table id="quejas" class="table">
             <thead>
                 <tr>
@@ -34,6 +41,7 @@
                     <th scope="col">Descripción</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +51,7 @@
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->direccion }}</td>
                         <td>
-                            @if ($item->categoriaqueja == 1)
+                        @if ($item->categoriaqueja == 1)
                                 Opcion 1
                             @elseif($item->categoriaqueja == 2)
                                 Opcion 2
@@ -56,7 +64,7 @@
                         <td>{{ $item->descripcion }}</td>
                         <td>{{ $item->fecha }}</td>
                         <td>
-                            @if ($item->estado == 1)
+                        @if ($item->estado == 1)
                                 Pendiente
                             @elseif($item->estado == 2)
                                 Solucionado
@@ -67,19 +75,6 @@
                             @endif
                         </td>
 
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($datos as $item)
-                    <tr>
                         <td>
                             <form action="{{ route('actualizar.estado', ['idqueja' => $item->idqueja]) }}"
                                 method="POST">
@@ -89,7 +84,6 @@
                                     Solucionar
                                 </button>
                             </form>
-
 
                             <form action="{{ route('descartar.estado', ['idqueja' => $item->idqueja]) }}"
                                 method="POST">
@@ -103,14 +97,27 @@
                         </td>
                     </tr>
                 @endforeach
+        </table>
+        <table class="sticky-col">
+            <thead>
+                
+            </thead>
+            <tbody>
+                @foreach ($datos as $item)
+                    <tr>
+                        
+                    </tr>
+                @endforeach
             </tbody>
         </table>
-    </div>
+</div>        
+    
 </x-app-layout>
 
 
 
 <script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/jquery/jquery-3.5.1.js"></script>
 
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -127,10 +134,47 @@
 <script>
     $(function() {
         $("#quejas").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "columns": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                { "type": "html" }
+            ],
+            "buttons": [
+            {
+                text: 'Copiar',
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            },
+            {
+                text: 'Exportar a PDF',
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            },
+            {
+                text: 'Exportar a Excel',
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            },
+            {
+                text: 'Imprimir',
+                extend: 'print',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            },
+            ]
         }).buttons().container().appendTo('#quejas_wrapper .col-md-6:eq(0)');
 
     });
