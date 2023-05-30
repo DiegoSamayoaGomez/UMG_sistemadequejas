@@ -23,10 +23,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [quejasController::class, 'index'])->name('dashboard');
 });
 
 Route::post("/registrar-queja", [quejasController::class, "create"])->name("quejas.create");
 Route::post("/modificar-queja", [quejasController::class, "update"])->name("quejas.update");
+Route::put('/quejas/{idqueja}/actualizar-estado', [quejasController::class,"actualizarEstado"])->name('actualizar.estado');
+Route::put('/quejas/{idqueja}/descartar-estado', [quejasController::class,"descartarEstado"])->name('descartar.estado');

@@ -51,7 +51,7 @@
         svg,
         video {
             display: block;
-            vertical-align: middle
+
         }
 
         video {
@@ -403,7 +403,11 @@
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div style="width: 500px; max-width: 100%; background-color: white; overflow: auto;">
-                    <form class="mt-4 mb-4 ml-4 mr-4" method="POST" action="/ruta">
+
+
+<!-- AQUI EMPIEZA EL CODIGO PARA REGISTRAR QUEJAS -->
+
+                    <form class="mt-4 mb-4 ml-4 mr-4" action="{{route("quejas.create")}}" method="post">
                         @csrf
                         <!-- Agregar NAME a inputs -->
 
@@ -418,43 +422,42 @@
                             <h1>Generar queja</h1>
                         </div>
 
-
-
-
                         <div class="mb-3">
                             <label for="inputEmail" class="form-label">Correo electrónico (Opcional)</label>
                             <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                                style="max-width: 470px;">
+                                style="max-width: 470px;" name=txtemail>
                         </div>
 
                         <div class="mb-3">
                             <label for="InputDireccion" class="form-label">¿Dónde ocurre el problema?</label>
                             <input type="text" class="form-control" id="InputDireccion" style="max-width: 470px;"
-                                required>
+                                required name=txtdireccion>
                         </div>
 
                         <div class="mb-3">
                             <label for="tiposdeproblema">Selecciona una categoría:</label>
-                            <select class="form-select" id="tiposdeproblema" style="max-width: 470px;" required>
-                                <option value="opcion1">Opción 1</option>
-                                <option value="opcion2">Opción 2</option>
-                                <option value="opcion3">Opción 3</option>
-                                <option value="opcion4">Opción 4</option>
-                            </select>
+                            <select class="form-select" id="tiposdeproblema" style="max-width: 470px;" name="txtcategoriaqueja" required >
+                                <option value="Energia Electrica">Energia Electrica</option>
+                                <option value="Pavimento">Pavimento</option>
+                                <option value="Delincuencia">Delincuencia</option>
+                                <option value="Agua">Agua</option>
+                            </select >
                         </div>
 
                         <div class="mb-3">
                             <label for="mensaje">Descripción del problema:</label>
                             <textarea class="form-control" id="mensaje" name="mensaje" rows="4" cols="50" style="max-width: 470px;"
-                                maxlength="800" required></textarea>
+                                maxlength="800"  required ></textarea>
 
                         </div>
 
                         <div class="d-flex
                                 justify-content-center">
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="submit" class="btn btn-primary">Registrar</button>
                         </div>
                     </form>
+<!-- AQUI TERMINA EL CODIGO PARA REGISTRAR QUEJAS -->
+
                 </div>
             </div>
         </div>
