@@ -91,7 +91,7 @@
                                 method="POST">
                                 @csrf
                                 @method('PUT')
-                                <button type="submit" class="btn btn-success text-dark">
+                                <button type="submit" class="btn btn-outline-success btn-sm">
                                     Solucionar
                                 </button>
                             </form>
@@ -100,7 +100,7 @@
                                 method="POST">
                                 @csrf
                                 @method('PUT')
-                                <button type="submit" class="btn btn-danger text-dark">
+                                <button type="submit" class="btn btn-outline-danger btn-sm">
                                     Descartar
                                 </button>
                             </form>
