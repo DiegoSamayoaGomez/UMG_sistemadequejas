@@ -5,7 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <img src="{{ asset('images/xd.png') }}" alt="Logo Personalizado" width="50" height="50">
+                    <img src="{{ asset('images/huehuebandera.png') }}" alt="Logo Personalizado" width="50"
+                        height="80">
                 </div>
 
                 <!-- Navigation Links -->
@@ -14,6 +15,7 @@
                         {{ __('Reporte de quejas') }}
                     </x-nav-link>
                 </div>
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
