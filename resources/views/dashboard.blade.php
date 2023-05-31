@@ -22,6 +22,7 @@
             margin-right: 10px;
             /* Espacio entre las tablas */
         }
+
         .sticky-col {
             position: sticky !important;
             z-index: 1000;
@@ -30,7 +31,7 @@
             left: 0;
         }
     </style>
-<div class="table-container">
+    <div class="table-container">
         <table id="quejas" class="table">
             <thead>
                 <tr>
@@ -51,7 +52,7 @@
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->direccion }}</td>
                         <td>
-                        @if ($item->categoriaqueja == 1)
+                            @if ($item->categoriaqueja == 1)
                                 Opcion 1
                             @elseif($item->categoriaqueja == 2)
                                 Opcion 2
@@ -64,7 +65,7 @@
                         <td>{{ $item->descripcion }}</td>
                         <td>{{ $item->fecha }}</td>
                         <td>
-                        @if ($item->estado == 1)
+                            @if ($item->estado == 1)
                                 Pendiente
                             @elseif($item->estado == 2)
                                 Solucionado
@@ -95,28 +96,28 @@
                             </form>
                         </td>
                         <td>
-                            @if ($item->imagenes!=NULL)
+                            @if ($item->imagenes != null)
                                 <img src='vista.php?id={{ $item->idqueja }}' width="150" />
                             @else
-                            @endif  
+                            @endif
                         </td>
                     </tr>
                 @endforeach
         </table>
         <table class="sticky-col">
             <thead>
-                
+
             </thead>
             <tbody>
                 @foreach ($datos as $item)
                     <tr>
-                        
+
                     </tr>
                 @endforeach
             </tbody>
         </table>
-</div>        
-    
+    </div>
+
 </x-app-layout>
 
 
@@ -139,7 +140,9 @@
 <script>
     $(function() {
         $("#quejas").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
             "columns": [
                 null,
                 null,
@@ -148,38 +151,41 @@
                 null,
                 null,
                 null,
-                { "type": "html" },
-                { "type": "html" },
+                {
+                    "type": "html"
+                },
+                {
+                    "type": "html"
+                },
             ],
-            "buttons": [
-            {
-                text: 'Copiar',
-                extend: 'copyHtml5',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5 ]
-                }
-            },
-            {
-                text: 'Exportar a PDF',
-                extend: 'pdfHtml5',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5 ]
-                }
-            },
-            {
-                text: 'Exportar a Excel',
-                extend: 'excelHtml5',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5 ]
-                }
-            },
-            {
-                text: 'Imprimir',
-                extend: 'print',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5 ]
-                }
-            },
+            "buttons": [{
+                    text: 'Copiar',
+                    extend: 'copyHtml5',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    }
+                },
+                {
+                    text: 'Exportar a PDF',
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    }
+                },
+                {
+                    text: 'Exportar a Excel',
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    }
+                },
+                {
+                    text: 'Imprimir',
+                    extend: 'print',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
+                    }
+                },
             ]
         }).buttons().container().appendTo('#quejas_wrapper .col-md-6:eq(0)');
 
