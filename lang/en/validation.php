@@ -98,7 +98,7 @@ return [
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
         'array' => 'The :attribute must have at least :min items.',
-        'file' => 'The :attribute must be at least :min kilobytes.',
+        'file' => 'La contraseña debe ser al menos de 8 caracteres.',
         'numeric' => 'La contraseña debe ser al menos de 8 caracteres.',
         'string' => 'La contraseña debe ser al menos de 8 caracteres.',
     ],
