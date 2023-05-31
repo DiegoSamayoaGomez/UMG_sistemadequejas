@@ -93,7 +93,9 @@
                                     Descartar
                                 </button>
                             </form>
-
+                        </td>
+                        <td>
+                            <img src='vista.php?id={{ $item->idqueja }}' alt='Img blob desde MySQL' width="300" />
                         </td>
                     </tr>
                 @endforeach
