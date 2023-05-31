@@ -402,12 +402,13 @@
         @endif
         <div class="container">
             <div class="d-flex justify-content-center">
-                <div style="width: 500px; max-width: 100%; background-color: white; overflow: auto;">
+                <div style="width: 500px; max-width: 100%; background-color: white; overflow: auto;"
+                    class="shadow-sm p-3 mb-5 bg-white rounded">
 
 
-<!-- AQUI EMPIEZA EL CODIGO PARA REGISTRAR QUEJAS -->
+                    <!-- AQUI EMPIEZA EL CODIGO PARA REGISTRAR QUEJAS -->
 
-                    <form class="mt-4 mb-4 ml-4 mr-4" action="{{route("quejas.create")}}" method="post">
+                    <form class="mt-4 mb-4 ml-4 mr-4" action="{{ route('quejas.create') }}" method="post">
                         @csrf
                         <!-- Agregar NAME a inputs -->
 
@@ -436,18 +437,20 @@
 
                         <div class="mb-3">
                             <label for="tiposdeproblema">Selecciona una categoría:</label>
-                            <select class="form-select" id="tiposdeproblema" style="max-width: 470px;" name="txtcategoriaqueja" required >
-                                <option value="Energia Electrica">Energia Electrica</option>
+                            <select class="form-select" id="tiposdeproblema" style="max-width: 470px;"
+                                name="txtcategoriaqueja" required>
+                                <option value="Energia Electrica">Energía Eléctrica</option>
                                 <option value="Pavimento">Pavimento</option>
                                 <option value="Delincuencia">Delincuencia</option>
                                 <option value="Agua">Agua</option>
-                            </select >
+                                <option value="Otro">Otro (Especifique en la descripción)</option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
                             <label for="mensaje">Descripción del problema:</label>
                             <textarea class="form-control" id="mensaje" name="mensaje" rows="4" cols="50" style="max-width: 470px;"
-                                maxlength="800"  required ></textarea>
+                                maxlength="800" required></textarea>
 
                         </div>
 
@@ -456,12 +459,11 @@
                             <input type="file" class="form-control" id="image" name="image" multiple></input>
                         </div>
 
-                        <div class="d-flex
-                                justify-content-center">
-                            <button type="submit" class="btn btn-primary">Registrar</button>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-dark"><strong>REGISTRAR</strong></button>
                         </div>
                     </form>
-<!-- AQUI TERMINA EL CODIGO PARA REGISTRAR QUEJAS -->
+                    <!-- AQUI TERMINA EL CODIGO PARA REGISTRAR QUEJAS -->
 
                 </div>
             </div>
