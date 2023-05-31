@@ -13,20 +13,35 @@ class quejasController extends Controller
     }    
 
     public function create(Request $request)
-    {   
+    {    
+        $aux = $request->file('image');
         try{
-            $sql = DB::insert(" insert into quejas (email, direccion, categoriaqueja, descripcion, fecha, estado) values (?,?,?,?,'2023-05-28','Pendiente')", [
-                $request->txtemail,
-                $request->txtdireccion,
-                $request->txtcategoriaqueja,
-                $request->mensaje,
-            ]);
+            if ($aux) {
+                $sql = DB::insert(" insert into quejas (email, direccion, categoriaqueja, descripcion, fecha, estado, imagenes) values (?,?,?,?,'2023-05-28','Pendiente',?)", [
+                    $request->txtemail,
+                    $request->txtdireccion,
+                    $request->txtcategoriaqueja,
+                    $request->mensaje,
+                    file_get_contents($aux->getRealPath()), // Lee el contenido de la imagen
+                ]);
+            }
+            else{
+                $sql = DB::insert(" insert into quejas (email, direccion, categoriaqueja, descripcion, fecha, estado) values (?,?,?,?,'2023-05-28','Pendiente')", [
+                    $request->txtemail,
+                    $request->txtdireccion,
+                    $request->txtcategoriaqueja,
+                    $request->mensaje,
+                ]);
+            }
+            
         } catch (\Throwable $th) {
             $sql = 0;
         }
         if($sql==true){
+            error_log('correcto.' );
             return back()->with("correcto", "Queja registrada correctamente");
         } else {
+            error_log('incorrecto.' );
             return back()->with("incorrecto", "Error al registrar");
         }
     }

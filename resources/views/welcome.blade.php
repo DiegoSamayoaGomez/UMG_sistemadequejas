@@ -408,7 +408,8 @@
 
                     <!-- AQUI EMPIEZA EL CODIGO PARA REGISTRAR QUEJAS -->
 
-                    <form class="mt-4 mb-4 ml-4 mr-4" action="{{ route('quejas.create') }}" method="post">
+                    <form class="mt-4 mb-4 ml-4 mr-4" action="{{ route('quejas.create') }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <!-- Agregar NAME a inputs -->
 
@@ -456,7 +457,7 @@
 
                         <div class="mb-3">
                             <label for="mensaje">Imagen del problema (Opcional):</label>
-                            <input type="file" class="form-control" id="image" name="image" multiple></input>
+                            <input type="file" class="form-control" name="image" id="image"></input>
                         </div>
 
                         <div class="d-flex justify-content-center">

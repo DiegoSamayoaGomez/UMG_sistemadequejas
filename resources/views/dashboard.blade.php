@@ -95,7 +95,10 @@
                             </form>
                         </td>
                         <td>
-                            <img src='vista.php?id={{ $item->idqueja }}' alt='Img blob desde MySQL' width="300" />
+                            @if ($item->imagenes!=NULL)
+                                <img src='vista.php?id={{ $item->idqueja }}' width="150" />
+                            @else
+                            @endif  
                         </td>
                     </tr>
                 @endforeach
@@ -145,7 +148,8 @@
                 null,
                 null,
                 null,
-                { "type": "html" }
+                { "type": "html" },
+                { "type": "html" },
             ],
             "buttons": [
             {
