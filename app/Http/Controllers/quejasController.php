@@ -17,7 +17,7 @@ class quejasController extends Controller
         $aux = $request->file('image');
         try{
             if ($aux) {
-                $sql = DB::insert(" insert into quejas (email, direccion, categoriaqueja, descripcion, fecha, estado, imagenes) values (?,?,?,?,'2023-05-28','Pendiente',?)", [
+                $sql = DB::insert(" insert into quejas (email, direccion, categoriaqueja, descripcion, fecha, estado, imagenes) values (?,?,?,?,NOW(),'Pendiente',?)", [
                     $request->txtemail,
                     $request->txtdireccion,
                     $request->txtcategoriaqueja,
@@ -26,7 +26,7 @@ class quejasController extends Controller
                 ]);
             }
             else{
-                $sql = DB::insert(" insert into quejas (email, direccion, categoriaqueja, descripcion, fecha, estado) values (?,?,?,?,'2023-05-28','Pendiente')", [
+                $sql = DB::insert(" insert into quejas (email, direccion, categoriaqueja, descripcion, fecha, estado) values (?,?,?,?,NOW(),'Pendiente')", [
                     $request->txtemail,
                     $request->txtdireccion,
                     $request->txtcategoriaqueja,

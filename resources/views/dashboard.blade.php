@@ -9,18 +9,37 @@
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Reporte de quejas') }}
-        </h2>
+        <div style="max-width: 1250px; margin: 0 auto;">
+            <h2 class="font-semibold text-xl text-white-800 leading-tight">
+                {{ __('Reporte de quejas') }}
+            </h2>
+        </div>
     </x-slot>
+
     <style>
         .table-container {
             display: flex;
+            max-width: 1250px;
+            margin: 0 auto;
+
         }
 
         .table-container table {
             margin-right: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
             /* Espacio entre las tablas */
+        }
+
+        .dataTables_wrapper .dt-buttons {
+            background-color: black;
+            /* Agregado */
+        }
+
+        .container-with-bg {
+            background-color: white;
+            padding: 10px;
         }
 
         .sticky-col {
@@ -36,13 +55,14 @@
             <thead>
                 <tr>
                     <th scope="col">No.</th>
-                    <th scope="col">Correo Electronico</th>
-                    <th scope="col">Direccion</th>
-                    <th scope="col">Categoria</th>
+                    <th scope="col">Correo Electrónico</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Categoría</th>
                     <th scope="col">Descripción</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Acciones</th>
+                    <th scope="col">Imagen</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,17 +71,7 @@
                         <td>{{ $item->idqueja }}</td>
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->direccion }}</td>
-                        <td>
-                            @if ($item->categoriaqueja == 1)
-                                Opcion 1
-                            @elseif($item->categoriaqueja == 2)
-                                Opcion 2
-                            @elseif($item->categoriaqueja == 3)
-                                Opcion 3
-                            @elseif($item->categoriaqueja == 4)
-                                Opcion 4
-                            @endif
-                        </td>
+                        <td>{{ $item->categoriaqueja }}</td>
                         <td>{{ $item->descripcion }}</td>
                         <td>{{ $item->fecha }}</td>
                         <td>
@@ -124,7 +134,6 @@
 
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <script src="../../plugins/jquery/jquery-3.5.1.js"></script>
-
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -137,57 +146,58 @@
 <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script>
-    $(function() {
-        $("#quejas").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "columns": [
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                {
-                    "type": "html"
-                },
-                {
-                    "type": "html"
-                },
-            ],
-            "buttons": [{
-                    text: 'Copiar',
-                    extend: 'copyHtml5',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
-                    }
-                },
-                {
-                    text: 'Exportar a PDF',
-                    extend: 'pdfHtml5',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
-                    }
-                },
-                {
-                    text: 'Exportar a Excel',
-                    extend: 'excelHtml5',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
-                    }
-                },
-                {
-                    text: 'Imprimir',
-                    extend: 'print',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5]
-                    }
-                },
-            ]
-        }).buttons().container().appendTo('#quejas_wrapper .col-md-6:eq(0)');
-
-    });
-</script>
+<div class="container-with-bg">
+    <script>
+        $(function() {
+            $("#quejas").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "columns": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    {
+                        "type": "html"
+                    },
+                    {
+                        "type": "html"
+                    },
+                ],
+                "buttons": [{
+                        text: 'Copiar',
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        text: 'Exportar a PDF',
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        text: 'Exportar a Excel',
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        text: 'Imprimir',
+                        extend: 'print',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                ]
+            }).buttons().container().appendTo('#quejas_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+</div>
