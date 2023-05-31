@@ -451,6 +451,11 @@
 
                         </div>
 
+                        <div class="mb-3">
+                            <label for="mensaje">Imagen del problema (Opcional):</label>
+                            <input type="file" class="form-control" id="image" name="image" multiple></input>
+                        </div>
+
                         <div class="d-flex
                                 justify-content-center">
                             <button type="submit" class="btn btn-primary">Registrar</button>

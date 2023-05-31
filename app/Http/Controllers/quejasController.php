@@ -10,16 +10,10 @@ class quejasController extends Controller
     public function index(){
         $datos=DB::select("select * from quejas");
         return view('dashboard')->with("datos",$datos);
-    }
-    public function __invoke()
-    {
-        $datos=DB::select("select * from quejas");
-        return view('dashboard')->with("datos",$datos);
-    }
-
+    }    
 
     public function create(Request $request)
-    {
+    {   
         try{
             $sql = DB::insert(" insert into quejas (email, direccion, categoriaqueja, descripcion, fecha, estado) values (?,?,?,?,'2023-05-28','Pendiente')", [
                 $request->txtemail,
