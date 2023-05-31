@@ -15,7 +15,7 @@
             </h2>
         </div>
     </x-slot>
-
+    <br>
     <style>
         .table-container {
             display: flex;
